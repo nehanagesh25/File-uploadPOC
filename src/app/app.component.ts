@@ -1,5 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Http, RequestOptions, Headers } from '@angular/http';
+import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ export class AppComponent {
   user :UserModel = new UserModel();
   globalfileName;
   myForm:NgForm;
+  constructor(public http:Http){}
   ngOnInit(){}  
   onChange(e){
     let fileList: FileList = e.target.files;
@@ -32,9 +35,17 @@ export class AppComponent {
     let formData: FormData = new FormData();
     formData.append('uploadFile', this.fileUpload, this.globalfileName);
     formData.append('jsonData',JSON.stringify(this.user));
+    let headers = new Headers()
+    let options = new RequestOptions({ headers: headers });
+    let apiUrl1 = "/api/UploadFileApi";
+    this.http.post('localhost:58303/Covert/Upload', formData, options)
+        .map(res => res.json())
+        .subscribe(
+        data => console.log("data"),
+        error => console.log(error)
+        )
+ }
 
-
-  }
 }
 export class UserModel{
   name:string;
