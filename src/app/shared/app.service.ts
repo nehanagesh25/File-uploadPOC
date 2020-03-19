@@ -15,7 +15,7 @@ export class FileUploadService {
         
     }
 
-    uploadFile(user: UserModel) : Observable<any>{
+    uploadFile(user) : Observable<any>{
         return this.http.post<JSON>('http://localhost:58303/api/uploadattachment/', user);
     }
 }

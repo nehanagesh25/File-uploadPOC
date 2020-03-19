@@ -41,7 +41,7 @@ export class AppComponent {
     this.user.name = data.name;
     this.user.email = data.email
     this.user.fileName= this.globalfileName;
-    this.user.Attachment = this.fileToUpload;
+    this.user.Attachment = this.fileToUpload
     // this.user.fileName = this.globalfileName;
     let formData: FormData = new FormData();
     formData.append('uploadFile', this.fileToUpload, this.globalfileName);
@@ -49,10 +49,10 @@ export class AppComponent {
     let headers = new Headers()
     let options = new RequestOptions({ headers: headers });
     let apiUrl1 = "/api/UploadFileApi";
-    this.fileService.uploadFile(this.user).subscribe(data => {
+    this.fileService.uploadFile(formData).subscribe(data => {
        console.log(data);
     });
-    // return this.http.post('http://localhost:58303/api/uploadattachment/', this.user, options)
+     //return this.http.post('http://localhost:58303/api/uploadattachment/', formData, options);
     // .map(res => res.json());
         // .map(res => res.json())
         // .subscribe(
