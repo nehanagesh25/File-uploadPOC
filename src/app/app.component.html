@@ -9,7 +9,7 @@
 </div>
 <div>
   <label>File Upload: </label>
-  <input type="file" name="feilename" (change)="onChange($event)"><br/><br/>
+  <input type="file" name="feilename" (change)="onChange($event.target.files)" ngModel><br/><br/>
 </div>
 <div>
   <button type="submit">Submit</button>
